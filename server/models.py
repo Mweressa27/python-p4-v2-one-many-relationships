@@ -19,8 +19,8 @@ class Employee(db.Model):
     name = db.Column(db.String)
     hire_date = db.Column(db.Date)
     reviews = db.relationship('Review')
-    reviews = db.relationship('Review', back_populates="employee")
-    onboarding = db.relationship('Onboarding', uselist=False, back_populates='employee')
+    reviews = db.relationship('Review', back_populates="employee", cascade='all, delete-orphan')
+    onboarding = db.relationship('Onboarding', uselist=False, back_populates='employee', cascade='all, delete-orphan')
 
     def __repr__(self):
         return f"<Employee {self.id}, {self.name}, {self.hire_date}>"
